@@ -10,9 +10,11 @@ public class EnemySpawner : MonoBehaviour
     private float spawnTIme;
     [SerializeField]
     private Transform[] wayPoints;
-
+    private List<Enemy> enemyList;
+    public List<Enemy> EnemyList => enemyList;
     private void Awake()
     {
+        enemyList = new List<Enemy>();
         StartCoroutine("SpawnEnemy");
     }
     private IEnumerator SpawnEnemy()
@@ -21,8 +23,14 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject clone = Instantiate(enemyPrefab);
             Enemy enemy = clone.GetComponent<Enemy>();
-            enemy.Setup(wayPoints);
+            enemy.Setup(this,wayPoints);
+            enemyList.Add(enemy);
             yield return new WaitForSeconds(spawnTIme);
         }
+    }
+    public void DestroyEnemy(Enemy enemy)
+    {
+        enemyList.Remove(enemy);
+        Destroy(enemy.gameObject);
     }
 }
