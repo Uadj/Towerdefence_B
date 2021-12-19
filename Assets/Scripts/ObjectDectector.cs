@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class ObjectDectector : MonoBehaviour
 {
     [SerializeField]
@@ -9,23 +9,45 @@ public class ObjectDectector : MonoBehaviour
     private Camera mainCamera;
     private Ray ray;
     private RaycastHit hit;
-
+    [SerializeField]
+    private TowerDataViewer towerDataViewer;
+    private Transform hitTransform = null;
     private void Awake()
     {
         mainCamera = Camera.main;
     }
     private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out hit, Mathf.Infinity)){
+                hitTransform = hit.transform;
                 if (hit.transform.CompareTag("Tile"))
                 {
+                   
                     towerSpawner.SpawnTower(hit.transform);
                 }
+                else if (hit.transform.CompareTag("Tower"))
+                {
+                    towerDataViewer.OnPanel(hit.transform);
+                }
+                
             }
-        }   
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (hitTransform == null || !hitTransform.CompareTag("Tower"))
+            {
+                towerDataViewer.OffPanel();
+            }
+            hitTransform = null;
+        }
+
     }
  
 }
