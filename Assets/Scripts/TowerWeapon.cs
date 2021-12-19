@@ -10,6 +10,8 @@ public class TowerWeapon : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
     [SerializeField]
+    private float attackDamage = 1f;
+    [SerializeField]
     private float attackRate = 0.5f;
     [SerializeField]
     private float attackRange = 2.0f;
@@ -72,7 +74,7 @@ public class TowerWeapon : MonoBehaviour
                 ChangeState(WeaponState.SearchTarget);
                 break;
             }
-            float distance = Vector3.Distance(attackTarget.transform.position, transform.position);
+            float distance = Vector3.Distance(attackTarget.position, transform.position);
             if (distance > attackRange)
             {
                 attackTarget = null;
@@ -85,6 +87,7 @@ public class TowerWeapon : MonoBehaviour
     }
     private void SpawnProjectile()
     {
-        Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+        GameObject clone = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+        clone.GetComponent<Projectile>().Setup(attackTarget, attackDamage);
     }
 }
