@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 public class TowerSpawner : MonoBehaviour
 {
+
     [SerializeField]
-    private TowerTemplate towerTemplate;
+    private TowerTemplate[] towerTemplate;
     [SerializeField]
     private EnemySpawner enemySpawner;
     [SerializeField]
@@ -14,19 +14,21 @@ public class TowerSpawner : MonoBehaviour
     private SystemTextViewer systemTextViewer;
     private GameObject followTowerClone = null;
     private bool isOnTowerButton = false;
-    public void ReadyToSpawnTower()
+    private int towerType;
+    public void ReadyToSpawnTower(int type)
     {
+        towerType = type;
         if (isOnTowerButton)
         {
             return;
         }
-        if (towerTemplate.weapon[0].cost > playerGold.CurrentGold)
+        if (towerTemplate[towerType].weapon[0].cost > playerGold.CurrentGold)
         {
             systemTextViewer.PrintText(SystemType.Money);
             return;
         }
         isOnTowerButton = true;
-        followTowerClone = Instantiate(towerTemplate.followTowerPrefab);
+        followTowerClone = Instantiate(towerTemplate[towerType].followTowerPrefab);
         StartCoroutine("OnTowerCancelSystem");
     }
     public void SpawnTower(Transform tileTransform)
@@ -50,9 +52,9 @@ public class TowerSpawner : MonoBehaviour
         }
         isOnTowerButton = false;
         tile.IsBuilTower = true;
-        playerGold.CurrentGold -= towerTemplate.weapon[0].cost;
+        playerGold.CurrentGold -= towerTemplate[towerType].weapon[0].cost;
         Vector3 position = tileTransform.position + Vector3.back;
-        GameObject clone = Instantiate(towerTemplate.towerPrefab, position, Quaternion.identity);
+        GameObject clone = Instantiate(towerTemplate[towerType].towerPrefab, position, Quaternion.identity);
         clone.GetComponent<TowerWeapon>().Setup(enemySpawner, playerGold, tile);
         Destroy(followTowerClone);
         StopCoroutine("OnTowerCancelSystem");

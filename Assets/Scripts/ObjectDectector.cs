@@ -29,7 +29,6 @@ public class ObjectDectector : MonoBehaviour
                 hitTransform = hit.transform;
                 if (hit.transform.CompareTag("Tile"))
                 {
-                   
                     towerSpawner.SpawnTower(hit.transform);
                 }
                 else if (hit.transform.CompareTag("Tower"))
