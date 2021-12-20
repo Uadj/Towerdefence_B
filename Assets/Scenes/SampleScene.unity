@@ -169,8 +169,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 133, y: -150}
-  m_SizeDelta: {x: 100, y: 50}
+  m_AnchoredPosition: {x: 157.2, y: -150}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &35908894
 MonoBehaviour:
@@ -812,7 +812,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 10, y: 34.799988}
   m_SizeDelta: {x: 230, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &196526574
@@ -1008,8 +1008,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -5}
+  m_SizeDelta: {x: 0, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &249166305
 MonoBehaviour:
@@ -1040,8 +1040,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1709,7 +1709,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 25, y: -400}
-  m_SizeDelta: {x: 250, y: 370}
+  m_SizeDelta: {x: 250, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &440992654
 MonoBehaviour:
@@ -1728,6 +1728,8 @@ MonoBehaviour:
   textRate: {fileID: 196526574}
   textRange: {fileID: 1452367954}
   textLevel: {fileID: 661610543}
+  textupgradeCost: {fileID: 249166305}
+  textsellPrice: {fileID: 1009850796}
   towerAttackRange: {fileID: 846889098}
   buttonUpgrade: {fileID: 2013952700}
   systemTextViewer: {fileID: 1496506940}
@@ -2237,7 +2239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -100}
+  m_AnchoredPosition: {x: 10, y: -65.20001}
   m_SizeDelta: {x: 230, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &661610543
@@ -4088,8 +4090,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -5}
+  m_SizeDelta: {x: 0, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1009850796
 MonoBehaviour:
@@ -4120,8 +4122,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4146,7 +4148,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5858,7 +5860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -50}
+  m_AnchoredPosition: {x: 10, y: -15.200012}
   m_SizeDelta: {x: 230, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1452367954
@@ -6998,14 +7000,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - SpawnTime: 0.5
+  - SpawnTime: 1
     maxEnemyCount: 10
     enemyPrefabs:
     - {fileID: 1751011544235076097, guid: cf584f3c2a8dae244bae881d0d562b04, type: 3}
-  - SpawnTime: 0.5
+  - SpawnTime: 1
     maxEnemyCount: 20
     enemyPrefabs:
+    - {fileID: 1751011544235076097, guid: cf584f3c2a8dae244bae881d0d562b04, type: 3}
+  - SpawnTime: 0.8
+    maxEnemyCount: 15
+    enemyPrefabs:
+    - {fileID: 1751011544235076097, guid: cf584f3c2a8dae244bae881d0d562b04, type: 3}
     - {fileID: 1751011544235076097, guid: f2dfb02960083bb47bfb373e4b55a9b3, type: 3}
+  - SpawnTime: 0.8
+    maxEnemyCount: 20
+    enemyPrefabs:
+    - {fileID: 1751011544235076097, guid: cf584f3c2a8dae244bae881d0d562b04, type: 3}
+    - {fileID: 1751011544235076097, guid: f2dfb02960083bb47bfb373e4b55a9b3, type: 3}
+  - SpawnTime: 0.8
+    maxEnemyCount: 15
+    enemyPrefabs:
+    - {fileID: 1751011544235076097, guid: cf584f3c2a8dae244bae881d0d562b04, type: 3}
+    - {fileID: 1751011544235076097, guid: f2dfb02960083bb47bfb373e4b55a9b3, type: 3}
+    - {fileID: 1751011544235076097, guid: 6a52226da2ac45f47b771ec6b9abdd8e, type: 3}
+  - SpawnTime: 0.8
+    maxEnemyCount: 20
+    enemyPrefabs:
+    - {fileID: 1751011544235076097, guid: cf584f3c2a8dae244bae881d0d562b04, type: 3}
+    - {fileID: 1751011544235076097, guid: f2dfb02960083bb47bfb373e4b55a9b3, type: 3}
+    - {fileID: 1751011544235076097, guid: 6a52226da2ac45f47b771ec6b9abdd8e, type: 3}
+  - SpawnTime: 0.8
+    maxEnemyCount: 10
+    enemyPrefabs:
+    - {fileID: 1751011544235076097, guid: 03d3252c82264f441924e0da4915fc68, type: 3}
+    - {fileID: 1751011544235076097, guid: f2dfb02960083bb47bfb373e4b55a9b3, type: 3}
+    - {fileID: 1751011544235076097, guid: 6a52226da2ac45f47b771ec6b9abdd8e, type: 3}
+  - SpawnTime: 0.8
+    maxEnemyCount: 15
+    enemyPrefabs:
+    - {fileID: 1751011544235076097, guid: 03d3252c82264f441924e0da4915fc68, type: 3}
+    - {fileID: 1751011544235076097, guid: f2dfb02960083bb47bfb373e4b55a9b3, type: 3}
+    - {fileID: 1751011544235076097, guid: 6a52226da2ac45f47b771ec6b9abdd8e, type: 3}
+  - SpawnTime: 0.8
+    maxEnemyCount: 15
+    enemyPrefabs:
+    - {fileID: 1751011544235076097, guid: 03d3252c82264f441924e0da4915fc68, type: 3}
+    - {fileID: 1751011544235076097, guid: 286384800e6ce324e855b32d96954387, type: 3}
+    - {fileID: 1751011544235076097, guid: 6a52226da2ac45f47b771ec6b9abdd8e, type: 3}
+  - SpawnTime: 0.8
+    maxEnemyCount: 20
+    enemyPrefabs:
+    - {fileID: 1751011544235076097, guid: 03d3252c82264f441924e0da4915fc68, type: 3}
+    - {fileID: 1751011544235076097, guid: 286384800e6ce324e855b32d96954387, type: 3}
+    - {fileID: 1751011544235076097, guid: 6a52226da2ac45f47b771ec6b9abdd8e, type: 3}
   enemySpawner: {fileID: 1688185507}
 --- !u!1001 &1691784089
 PrefabInstance:
@@ -8090,7 +8138,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 20, y: -150}
-  m_SizeDelta: {x: 100, y: 50}
+  m_SizeDelta: {x: 120, y: 80}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2013952700
 MonoBehaviour:
@@ -8220,7 +8268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 50}
+  m_AnchoredPosition: {x: 10, y: 84.8}
   m_SizeDelta: {x: 230, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2064211187

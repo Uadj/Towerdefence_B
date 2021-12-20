@@ -6,6 +6,7 @@ public enum WeaponState { SearchTarget = 0, TryAttackCannon, TryAttackLaser, }
 public enum WeaponType { Cannon = 0, Laser,}
 public class TowerWeapon : MonoBehaviour
 {
+
     [Header("Common")]
     [SerializeField]
     private TowerTemplate towerTemplate;
@@ -42,8 +43,11 @@ public class TowerWeapon : MonoBehaviour
     public float Rate => towerTemplate.weapon[level].rate;
     public float Range => towerTemplate.weapon[level].range;
     public int MaxLevel => towerTemplate.weapon.Length;
+    public int sellPrice => towerTemplate.weapon[level].sell;
+    public int upgradePrice => towerTemplate.weapon[level+1].cost;
     private SpriteRenderer spriteRenderer;
     private PlayerGold  playerGold;
+    private bool isAttack = false;
     /*public float Damage => attackDamage;
    
     public float Rate => attackRate;
@@ -60,16 +64,27 @@ public class TowerWeapon : MonoBehaviour
     {
         
         StopCoroutine(weaponState.ToString());
+       // Debug.Log("Stoped " + weaponState.ToString());
         weaponState = newState;
         //Debug.Log(weaponState);
         StartCoroutine(weaponState.ToString());
+      //  Debug.Log("Started " + weaponState.ToString());
 
     }
     private void Update()
     {
+
+        attackTarget = FindClosestAttackTarget();
         if (attackTarget != null)
         {
             RotateToTarget();
+        }
+        else if(!isAttack)
+        {
+            if(weaponType == WeaponType.Cannon)
+                StartCoroutine("TryAttackCannon");
+            else
+                StartCoroutine("TryAttackLaser");
         }
     }
     private void RotateToTarget()
@@ -98,11 +113,6 @@ public class TowerWeapon : MonoBehaviour
     }
     private bool IsPossibleToAttackTarget()
     {
-   
-        if (attackTarget != null)
-        {
-            return false;
-        }
         float distance = Vector3.Distance(attackTarget.transform.position, transform.position);
         if (distance > towerTemplate.weapon[level].range)
         {
@@ -131,13 +141,14 @@ public class TowerWeapon : MonoBehaviour
             {
         
                 if(weaponType == WeaponType.Cannon)
-                { 
+                {
                     ChangeState(WeaponState.TryAttackCannon);
+
                 }
                 else if(weaponType==WeaponType.Laser)
                 {
-                    
                     ChangeState(WeaponState.TryAttackLaser);
+
                 }
             }
             yield return null;
@@ -145,6 +156,7 @@ public class TowerWeapon : MonoBehaviour
     }
     private IEnumerator TryAttackCannon()
     {
+        isAttack = true;
         while (true)
         {
             /*if (attackTarget == null)
@@ -160,32 +172,38 @@ public class TowerWeapon : MonoBehaviour
                 break;
             }
             */
-            if (IsPossibleToAttackTarget() == false)
-            {
-                ChangeState(WeaponState.SearchTarget);
-                break;
-            }
-            yield return new WaitForSeconds(towerTemplate.weapon[level].rate);
+            /*            if (IsPossibleToAttackTarget() == false)
+                        {
+                            ChangeState(WeaponState.SearchTarget);
+                        }*/
             SpawnProjectile();
+            yield return new WaitForSeconds(towerTemplate.weapon[level].rate);
+  
         }
+    }
+    private void SpawnProjectile()
+    {
+        GameObject clone = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+        clone.transform.localScale = new Vector3(level + 1, level + 1, level + 1);
+        clone.GetComponent<Projectile>().Setup(attackTarget, towerTemplate.weapon[level].damage);
     }
     private IEnumerator TryAttackLaser()
     {
         EnableLaser();
-
+        isAttack = true;
         while (true)
         {
-           // Debug.Log("Start");
-            if (IsPossibleToAttackTarget() == false)
+            // Debug.Log("Start");
+            if (attackTarget==null)
             {
                 DisableLaser();
                 ChangeState(WeaponState.SearchTarget);
+                isAttack = false;
                 break;
             }
-           // Debug.Log("Spawn");
+            // Debug.Log("Spawn");
             SpawnLaser();
             yield return null;
-
         }
     }
     private void EnableLaser()
@@ -206,6 +224,28 @@ public class TowerWeapon : MonoBehaviour
         {
             if (hit[i].transform == attackTarget)
             {
+                
+                if (level == 1) {
+                    Color c = lineRenderer.material.color;
+                    c.r = 0;
+                    c.g = 255;
+                    c.b = 0;
+                    lineRenderer.startColor = c;
+                    lineRenderer.endColor = c;
+                }
+                if(level == 2)
+                {
+                    Color c = lineRenderer.material.color;
+                    c.r = 155;
+                    c.g = 0;
+                    c.b = 255;
+                    lineRenderer.startColor = c;
+                    lineRenderer.endColor = c;
+                }
+                
+                lineRenderer.startWidth = level*0.01f +0.05f;
+                lineRenderer.endWidth = level*0.1f + 0.05f;
+                hitEffect.localScale = new Vector3(1 + level * 0.2f, 1 + level * 0.2f, 1 + level * 0.2f);
                 lineRenderer.SetPosition(0, spawnPoint.position);
                 lineRenderer.SetPosition(1, new Vector3(hit[i].point.x, hit[i].point.y, 0) + Vector3.back);
                 hitEffect.position = hit[i].point;
@@ -213,11 +253,7 @@ public class TowerWeapon : MonoBehaviour
             }
         }
     }
-    private void SpawnProjectile()
-    {
-        GameObject clone = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
-        clone.GetComponent<Projectile>().Setup(attackTarget, towerTemplate.weapon[level].damage);
-    }
+
     public bool Upgrade()
     {
         if (playerGold.CurrentGold < towerTemplate.weapon[level + 1].cost)

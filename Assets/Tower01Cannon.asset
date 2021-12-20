@@ -22,14 +22,14 @@ MonoBehaviour:
     cost: 50
     sell: 40
   - sprite: {fileID: 21300000, guid: ddb67a4e96e08ba40955b721801197b9, type: 3}
-    damage: 1.5
+    damage: 2
     rate: 0.4
     range: 2.3
     cost: 100
     sell: 80
   - sprite: {fileID: 21300000, guid: afa417014efb9ff42955e0adba7e2426, type: 3}
-    damage: 2
-    rate: 0.3
+    damage: 3
+    rate: 0.25
     range: 2.5
     cost: 150
     sell: 120
