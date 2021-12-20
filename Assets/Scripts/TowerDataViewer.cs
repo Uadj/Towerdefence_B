@@ -17,6 +17,10 @@ public class TowerDataViewer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textLevel;
     [SerializeField]
+    private TextMeshProUGUI textupgradeCost;
+    [SerializeField]
+    private TextMeshProUGUI textsellPrice;
+    [SerializeField]
     private TowerAttackRange towerAttackRange;
     [SerializeField]
     private Button buttonUpgrade;
@@ -54,7 +58,10 @@ public class TowerDataViewer : MonoBehaviour
         textRate.text = "Rate : " + currentTower.Rate;
         textRange.text = "Range : " + currentTower.Range;
         textLevel.text = "Level : " + currentTower.Level;
+        if(currentTower.Level!=currentTower.MaxLevel) textupgradeCost.text = "Upgrade<br>" + currentTower.upgradePrice ;
+        textsellPrice.text = "Sell<br>" + currentTower.sellPrice;
         buttonUpgrade.interactable = currentTower.Level < currentTower.MaxLevel ? true : false;
+        
     }
     public void OnClickEventTowerUpgrade()
     {
